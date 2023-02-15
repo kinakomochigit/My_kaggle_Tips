@@ -14,3 +14,12 @@ horses.loc[:, 'horse_weight'] = horses.groupby('horse_id')['horse_weight'].bfill
 train_df = train_df.sort_values(by=['loc_group', 'startdate']).ffill()
 ```
 [WiDS Datathon 2023: Forecasting with LGBM](https://www.kaggle.com/code/iamleonie/wids-datathon-2023-forecasting-with-lgbm)
+
+## [【pandas】csvの日付をDataFrameに読み込む方法（フォーマット・datetime・parse_dates）](https://www.self-study-blog.com/dokugaku/python-pandas-csv-datetime-parse/)
+* parser_dates=True：indexが日付ならdatetimeに変換
+* parser_dates=['列名','列名']：指定した列をdatetimeに変換
+* parser_dates=[['列名','列名']]：指定した列を結合してdatetimeに変換
+    * 結合したい列をリストに入れる。
+    * 結合した元の列は削除される。
+    * keep_ate_col=Trueでもとの列は削除されない。
+* parser_dates={'新列名': ['列名','列名']}：結合した列名を新列名に変更
