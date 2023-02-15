@@ -9,3 +9,8 @@ horses.loc[:, 'horse_weight'] = horses.groupby('horse_id')['horse_weight'].ffill
 horses.loc[:, 'horse_weight'] = horses.groupby('horse_id')['horse_weight'].bfill()
 ```
 [pandas で グループごとに ffill() と bfill() を両方適用したい](https://blog.misosi.ru/2020/10/18/pandas-how-to-apply-ffill-and-bfill-for-each-group/)
+
+```
+train_df = train_df.sort_values(by=['loc_group', 'startdate']).ffill()
+```
+[WiDS Datathon 2023: Forecasting with LGBM](https://www.kaggle.com/code/iamleonie/wids-datathon-2023-forecasting-with-lgbm)
