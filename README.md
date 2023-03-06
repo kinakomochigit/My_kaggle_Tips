@@ -32,4 +32,4 @@ plt.figure(figsize=(18, 8))
 mask = np.triu(np.ones_like(df_train.corr()))
 sns.heatmap(df_train.corr(),cmap='YlOrRd',annot=True,mask=mask)
 ```
-
+![](https://user-images.githubusercontent.com/107327935/223187920-9a918b36-7c7b-4913-8f63-d7e7d015e3ba.png)
