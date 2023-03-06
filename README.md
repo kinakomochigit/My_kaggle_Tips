@@ -23,3 +23,13 @@ train_df = train_df.sort_values(by=['loc_group', 'startdate']).ffill()
     * 結合した元の列は削除される。
     * keep_ate_col=Trueでもとの列は削除されない。
 * parser_dates={'新列名': ['列名','列名']}：結合した列名を新列名に変更
+
+## 相関係数の見せ方
+### numpy.tril()を利用する
+
+```
+plt.figure(figsize=(18, 8))
+mask = np.triu(np.ones_like(df_train.corr()))
+sns.heatmap(df_train.corr(),cmap='YlOrRd',annot=True,mask=mask)
+```
+
