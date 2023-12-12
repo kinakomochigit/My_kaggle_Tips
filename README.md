@@ -34,7 +34,7 @@ sns.heatmap(df_train.corr(),cmap='YlOrRd',annot=True,mask=mask)
 ```
 ![](https://user-images.githubusercontent.com/107327935/223187920-9a918b36-7c7b-4913-8f63-d7e7d015e3ba.png)
 
-
+```
 trigger:
   branches:
     include:
@@ -56,3 +56,4 @@ steps:
     docker run -v $(System.DefaultWorkingDirectory):/mnt -w /mnt your_docker_image:tag python your_script.py  # Docker内でPythonスクリプトを実行
   displayName: 'Run Python Script'
 
+```
