@@ -33,3 +33,26 @@ mask = np.triu(np.ones_like(df_train.corr()))
 sns.heatmap(df_train.corr(),cmap='YlOrRd',annot=True,mask=mask)
 ```
 ![](https://user-images.githubusercontent.com/107327935/223187920-9a918b36-7c7b-4913-8f63-d7e7d015e3ba.png)
+
+
+trigger:
+  branches:
+    include:
+      - main  # パイプラインが実行されるブランチを指定
+
+pool:
+  vmImage: 'ubuntu-latest'  # 使用する仮想マシンイメージを指定
+
+steps:
+- script: |
+    docker pull your_docker_image:tag  # Dockerイメージをpullするコマンド
+  displayName: 'Pull Docker Image'
+
+- script: |
+    docker run -v $(System.DefaultWorkingDirectory):/mnt -w /mnt your_docker_image:tag pip install -r requirements.txt  # Docker内でpipを使って必要なパッケージをインストール
+  displayName: 'Install Python Dependencies'
+
+- script: |
+    docker run -v $(System.DefaultWorkingDirectory):/mnt -w /mnt your_docker_image:tag python your_script.py  # Docker内でPythonスクリプトを実行
+  displayName: 'Run Python Script'
+
