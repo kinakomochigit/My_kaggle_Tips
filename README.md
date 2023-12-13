@@ -34,3 +34,36 @@ sns.heatmap(df_train.corr(),cmap='YlOrRd',annot=True,mask=mask)
 ```
 ![](https://user-images.githubusercontent.com/107327935/223187920-9a918b36-7c7b-4913-8f63-d7e7d015e3ba.png)
 
+```
+trigger:
+  branches:
+    include:
+      - main  # ビルドをトリガーするブランチを指定
+
+pool:
+  vmImage: 'ubuntu-latest'  # 使用するビルドエージェントイメージを指定
+
+steps:
+- script: |
+    # CUDA Toolkitのインストール
+    wget https://developer.download.nvidia.com/compute/cuda/11.5.0/local_installers/cuda_11.5.0_495.29.05_linux.run
+    sudo sh cuda_11.5.0_495.29.05_linux.run --silent --toolkit --override
+
+    # CUDA環境の設定
+    export PATH=/usr/local/cuda-11.5/bin${PATH:+:${PATH}}
+    export LD_LIBRARY_PATH=/usr/local/cuda-11.5/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+    # nvccのバージョン確認
+    nvcc --version
+
+    # プロジェクトのビルド
+    cd your_project_directory  # プロジェクトのディレクトリに移動
+    mkdir build
+    cd build
+    cmake ..
+    make
+
+  displayName: 'Build with CUDA'
+
+```
+
