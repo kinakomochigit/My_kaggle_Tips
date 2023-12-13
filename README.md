@@ -65,5 +65,12 @@ steps:
 
   displayName: 'Build with CUDA'
 
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: 'path/to/your/build/output'  # ビルドされたファイルのパスを指定
+    artifactName: 'my_artifact'  # アーティファクトの名前を指定
+    publishLocation: 'Container'  # アーティファクトの公開先を指定
+
 ```
 
